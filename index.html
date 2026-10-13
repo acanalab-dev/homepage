@@ -372,10 +372,10 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
       <div class="split one">
         <div class="card-b calc" id="calc">
           <div class="in">
-            <label for="subs">What could it earn? <span class="val"><span id="subsVal">200</span> subscribers at $4.99 a month</span></label>
+            <label for="subs">What could it earn? <span class="val"><span id="subsVal">200</span> subscribers at $7.99 a month</span></label>
             <input id="subs" type="range" min="10" max="2000" step="10" value="200">
           </div>
-          <div class="res"><b id="outYou">$594</b><span>yours each month<sup>*</sup></span></div>
+          <div class="res"><b id="outYou">$951</b><span>yours each month<sup>*</sup></span></div>
         </div>
       </div>
       <p class="foot star"><sup>*</sup> Roughly, because the exact amount depends on a few things outside our control. We count on Apple's App Store Small Business Program, which lowers Apple's fee from 30% to 15% for developers earning under $1 million a year. Net sales are what Apple pays out after its fee and any taxes it withholds, such as VAT. RevenueCat, which runs the subscriptions, is free up to $2,500 a month in sales and then takes 1%. That fee and Apple's $99 a year developer account are paid by you, directly to them.</p>
@@ -405,7 +405,7 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
       </details>
       <details>
         <summary>Why not hire an agency or a developer?</summary>
-        <p>A custom app from an agency or freelancer usually costs thousands up front, takes months, and then needs paying again every time something has to be updated. Here you get a finished, tested app for a one-time setup fee, it's live much sooner, and updates are free while your app does well. We only earn when you earn, so we want your app to succeed as much as you do.</p>
+        <p>Building a custom app with an agency or freelancer means a big upfront investment, a long wait, and paying again every time something needs updating. Here you get a finished, tested app for a one-time setup fee, it's live much sooner, and updates are free while your app does well. We only earn when you earn, so we want your app to succeed as much as you do.</p>
       </details>
       <details>
         <summary>Can you guarantee downloads or income?</summary>
@@ -451,10 +451,10 @@ var SHOWCASE_URL = "";
   var d = new Date();
   document.getElementById("mockDate").textContent = d.toLocaleDateString("en-GB", { weekday: "long" }) + ", " + d.toLocaleDateString("en-GB", { day: "numeric", month: "long" });
 
-  // Earnings example at $4.99 a month: Apple keeps 15% (Small Business Program),
+  // Earnings example at $7.99 a month: Apple keeps 15% (Small Business Program),
   // RevenueCat takes 1% once sales pass $2,500 a month, creator keeps 70% of Apple's payout.
   var subs = document.getElementById("subs");
-  var PRICE = 4.99;
+  var PRICE = 7.99;
   function update() {
     var s = +subs.value, gross = s * PRICE, net = gross * 0.85;
     var rc = gross > 2500 ? gross * 0.01 : 0, you = net * 0.7 - rc;
