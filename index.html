@@ -139,6 +139,15 @@ section.alt .card-b { background: var(--bg); }
 .ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--soft); color: var(--accent); }
 .ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
+.feats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 32px; }
+@media (max-width: 640px) { .feats { grid-template-columns: minmax(0, 1fr); } }
+.feats li { display: flex; align-items: center; gap: 14px; }
+.feats .ico { flex-shrink: 0; width: 36px; height: 36px; border-radius: 10px; }
+.feats .ico svg { width: 19px; height: 19px; }
+.feats b { display: block; font-size: 16px; color: var(--text); }
+.feats li > span:last-child { color: var(--muted); font-size: 15px; line-height: 1.35; }
+.feats li > span:last-child::first-letter { text-transform: uppercase; }
+
 /* ---------- Steps ---------- */
 .steps { counter-reset: s; display: grid; gap: 14px; }
 .step { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; align-items: start; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 20px; }
@@ -150,9 +159,7 @@ section.alt .card-b { background: var(--bg); }
 /* ---------- Pricing ---------- */
 .plans { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 720px) { .plans { grid-template-columns: minmax(0, 1fr); } }
-.plan { border: 1px solid var(--line); border-radius: 24px; padding: 26px; background: var(--bg); position: relative; }
-.plan.featured { border: 2px solid transparent; background: linear-gradient(var(--bg), var(--bg)) padding-box, linear-gradient(135deg, var(--brand-a), var(--brand-b)) border-box; }
-.badge { position: absolute; top: -12px; right: 20px; font-size: 12px; font-weight: 700; color: #fff; padding: 4px 10px; border-radius: 999px; background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); }
+.plan { border: 1px solid var(--line); border-radius: 20px; padding: 22px; background: var(--panel); position: relative; }
 .plan h3 { margin: 0 0 4px; font-size: 20px; }
 .price { font-size: 40px; font-weight: 700; letter-spacing: -.03em; margin: 8px 0 2px; }
 .price small { font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
@@ -162,6 +169,7 @@ section.alt .card-b { background: var(--bg); }
 .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
 .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin-top: 16px; }
 @media (max-width: 720px) { .split { grid-template-columns: minmax(0, 1fr); } }
+.split.one { grid-template-columns: minmax(0, 1fr); }
 .table { width: 100%; border-collapse: collapse; font-size: 15px; }
 .table td { padding: 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
 .table tr:last-child td { border-bottom: 0; }
@@ -267,38 +275,14 @@ footer b { color: var(--text); }
     <div class="wrap">
       <h2>An app your followers will open every day</h2>
       <p class="sub">A finished, polished iPhone app. We dress it in your brand and fill it with your voice.</p>
-      <div class="grid">
-        <div class="card-b">
-          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
-          <h3>Fresh affirmations daily</h3>
-          <p>Hundreds of ready-made affirmations across 19 topics, from self love and confidence to calm and gratitude.</p>
-        </div>
-        <div class="card-b">
-          <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-          <h3>Your own words</h3>
-          <p>Add your own affirmations in a category with your name, and greet every new user with a personal welcome note.</p>
-        </div>
-        <div class="card-b">
-          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-3.5 2-5 1 1 1.5 2 1.5 3 1-2 1.5-5 1.5-8z"/></svg></div>
-          <h3>Streaks that build a habit</h3>
-          <p>A daily streak, weekly progress and milestones keep people coming back to your app, and to you.</p>
-        </div>
-        <div class="card-b">
-          <div class="ico"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
-          <h3>Gentle daily reminders</h3>
-          <p>A reminder at the time each user picks, so your words show up in their day without them having to remember.</p>
-        </div>
-        <div class="card-b">
-          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></div>
-          <h3>Home and Lock Screen widgets</h3>
-          <p>Your affirmation right on their Home Screen and Lock Screen, in your colors, all day long.</p>
-        </div>
-        <div class="card-b">
-          <div class="ico"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
-          <h3>Favorites and sharing</h3>
-          <p>Followers save the ones that speak to them and share them as beautiful cards with friends.</p>
-        </div>
-      </div>
+      <ul class="feats">
+        <li><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span><span><b>Fresh affirmations daily</b>hundreds across 19 topics</span></li>
+        <li><span class="ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span><b>Your own words</b>your own category and a personal welcome note</span></li>
+        <li><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-3.5 2-5 1 1 1.5 2 1.5 3 1-2 1.5-5 1.5-8z"/></svg></span><span><b>Streaks</b>daily streak, weekly progress and milestones</span></li>
+        <li><span class="ico"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></span><span><b>Daily reminders</b>at the time each user picks</span></li>
+        <li><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></span><span><b>Widgets</b>Home Screen and Lock Screen, in your colors</span></li>
+        <li><span class="ico"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></span><span><b>Favorites and sharing</b>save the best ones and share them as cards</span></li>
+      </ul>
     </div>
   </section>
 
@@ -376,22 +360,6 @@ footer b { color: var(--text); }
             <li>You keep 70% of net sales</li>
           </ul>
         </div>
-        <div class="plan featured">
-          <span class="badge">Setup free</span>
-          <h3>Launch partner</h3>
-          <div class="price">$0 <small>setup</small></div>
-          <p class="note">The setup fee is waived when you help us launch.</p>
-          <ul>
-            <li>Everything in Standard</li>
-            <li>At least 3 stories and 1 feed post in the first 30 days</li>
-            <li>We can share your app as a case study</li>
-            <li>The app stays live for at least 12 months</li>
-            <li>You keep 70% of net sales</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="split">
         <div class="card-b">
           <h3 style="margin-top:0">After launch</h3>
           <table class="table">
@@ -403,7 +371,9 @@ footer b { color: var(--text); }
           </table>
           <p class="note" style="margin:12px 0 0;color:var(--muted);font-size:13px">Net sales are what Apple pays out after its fee and any taxes it withholds. Apple's own $99 a year developer fee is paid by you, directly to Apple.</p>
         </div>
+      </div>
 
+      <div class="split one">
         <div class="card-b calc" id="calc">
           <h3 style="margin-top:0">What could it earn?</h3>
           <div class="row">
