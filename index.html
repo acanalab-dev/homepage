@@ -148,13 +148,32 @@ section.alt .card-b { background: var(--bg); }
 .feats li > span:last-child { color: var(--muted); font-size: 15px; line-height: 1.35; }
 .feats li > span:last-child::first-letter { text-transform: uppercase; }
 
-/* ---------- Steps ---------- */
-.steps { counter-reset: s; display: grid; gap: 14px; }
-.step { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; align-items: start; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 20px; }
-.step::before { counter-increment: s; content: counter(s); width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); }
-.step h3 { margin: 2px 0 4px; font-size: 17px; }
-.step p { margin: 0; color: var(--muted); font-size: 15px; }
-.who { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--soft); color: var(--accent); margin-left: 6px; vertical-align: 2px; }
+/* ---------- Perks (why creators like it) ---------- */
+.perks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 860px) { .perks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.perk { padding: 18px 0 0; border-top: 3px solid; border-image: linear-gradient(90deg, var(--brand-a), var(--brand-b)) 1; }
+.perk .big { font-size: 34px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; margin-bottom: 8px; background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.perk b { display: block; font-size: 16px; margin-bottom: 2px; }
+.perk p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.4; }
+
+/* ---------- Roadmap (how it works) ---------- */
+.road { counter-reset: s; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; }
+.road li { position: relative; }
+.road li::before { counter-increment: s; content: counter(s); width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); margin-bottom: 12px; box-shadow: 0 6px 16px -8px var(--brand-b); }
+/* Arrow from each step to the next */
+.road li:not(:last-child)::after { content: ""; position: absolute; top: 19px; left: 52px; right: -28px; height: 2px; background: linear-gradient(90deg, var(--brand-a), var(--brand-b)); opacity: .45; }
+.road li:not(:last-child) > b::after { content: ""; position: absolute; top: 14px; right: -30px; width: 8px; height: 8px; border-top: 2px solid var(--brand-b); border-right: 2px solid var(--brand-b); transform: rotate(45deg); opacity: .7; }
+.road b { display: block; font-size: 16px; margin: 6px 0 2px; }
+.road p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.4; }
+.who { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--soft); color: var(--accent); }
+@media (max-width: 760px) {
+  .road { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .road li { display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 14px; }
+  .road li::before { grid-row: 1 / span 3; margin: 0; }
+  .road li:not(:last-child)::after { top: 46px; bottom: -18px; left: 19px; right: auto; width: 2px; height: auto; background: linear-gradient(180deg, var(--brand-a), var(--brand-b)); }
+  .road li:not(:last-child) > b::after { top: auto; bottom: -20px; left: 16px; right: auto; transform: rotate(135deg); }
+  .road .who { justify-self: start; }
+}
 
 /* ---------- Pricing ---------- */
 .plans { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -291,12 +310,12 @@ footer b { color: var(--text); }
     <div class="wrap">
       <h2>Why creators like it</h2>
       <p class="sub">A product that fits your audience, without the work of building one.</p>
-      <ul class="feats">
-        <li><span class="ico"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg></span><span><b>It's yours</b>your Apple account, your listing, your subscribers</span></li>
-        <li><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span><span><b>Income that keeps coming</b>you keep 70% of net sales</span></li>
-        <li><span class="ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-2.5z"/></svg></span><span><b>We do the technical part</b>building, publishing, subscriptions and updates</span></li>
-        <li><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span><b>Good for your audience</b>calm, ad-free and genuinely helpful</span></li>
-      </ul>
+      <div class="perks">
+        <div class="perk"><div class="big">Yours</div><b>It's your app</b><p>Your Apple account, your listing, your subscribers.</p></div>
+        <div class="perk"><div class="big">70%</div><b>Income that keeps coming</b><p>Of net sales, paid by Apple every month.</p></div>
+        <div class="perk"><div class="big">0</div><b>Technical work for you</b><p>We build, publish, run subscriptions and update.</p></div>
+        <div class="perk"><div class="big">Ad-free</div><b>Good for your audience</b><p>Calm, kind and genuinely helpful.</p></div>
+      </div>
     </div>
   </section>
 
@@ -305,24 +324,12 @@ footer b { color: var(--text); }
     <div class="wrap">
       <h2>How it works</h2>
       <p class="sub">Four steps from idea to the App Store. Most of the waiting is on Apple's review.</p>
-      <div class="steps">
-        <div class="step"><div>
-          <h3>Design your app <span class="who">You, 5 minutes</span></h3>
-          <p>Open the <a href="https://acanalab-dev.github.io/brand-picker/">brand picker</a>, choose your app name, icon, colors and welcome note, and watch them appear on real app screens. Download your picks and send them to us.</p>
-        </div></div>
-        <div class="step"><div>
-          <h3>Set up your Apple account <span class="who">You</span></h3>
-          <p>Join the Apple Developer Program ($99 a year, paid to Apple) and the App Store Small Business Program, which cuts Apple's fee from 30% to 15%. Then add us to your team so we can publish for you.</p>
-        </div></div>
-        <div class="step"><div>
-          <h3>We build and publish <span class="who">Us</span></h3>
-          <p>We apply your brand, load your affirmations, set up subscriptions, prepare the App Store listing for your approval, and submit the app to Apple. You get one round of changes before it goes out.</p>
-        </div></div>
-        <div class="step"><div>
-          <h3>Launch and earn <span class="who">Together</span></h3>
-          <p>Share the app with your followers. Apple pays you every month, and we keep the app up to date while you focus on your content.</p>
-        </div></div>
-      </div>
+      <ol class="road">
+        <li><span class="who">You · 5 min</span><b>Design your app</b><p>Pick name, icon and colors in the <a href="https://acanalab-dev.github.io/brand-picker/">brand picker</a>.</p></li>
+        <li><span class="who">You</span><b>Set up Apple</b><p>Developer account ($99 a year) and add us to your team.</p></li>
+        <li><span class="who">Us</span><b>We build and publish</b><p>Branding, subscriptions, App Store listing and review.</p></li>
+        <li><span class="who">Together</span><b>Launch and earn</b><p>Share it with your followers. Apple pays you monthly.</p></li>
+      </ol>
     </div>
   </section>
 
