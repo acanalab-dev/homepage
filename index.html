@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Your Own Affirmations App</title>
 <meta name="description" content="A daily affirmations iPhone app with your name, your colors and your words. We build it, publish it under your account and keep it running. You share it and earn from subscriptions.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23667eea'/%3E%3Cstop offset='1' stop-color='%23764ba2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath fill='white' d='M12 18.5s-6-3.6-6-8a3.3 3.3 0 0 1 6-1.9 3.3 3.3 0 0 1 6 1.9c0 4.4-6 8-6 8z'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="app-icon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
 :root {
@@ -206,6 +206,8 @@ section.alt .card-b { background: var(--bg); }
 .calc .res { text-align: right; }
 .calc .res b { display: block; font-size: 36px; letter-spacing: -.03em; line-height: 1.1; color: var(--accent); }
 .calc .res span { font-size: 13px; color: var(--muted); }
+.calc .more { display: block; margin-top: 10px; font-style: normal; font-size: 13px; font-weight: 600; color: var(--accent); }
+.calc .more[hidden] { display: none; }
 @media (max-width: 560px) { .calc { grid-template-columns: minmax(0, 1fr); } .calc .res { text-align: left; } }
 .calc .fine { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
 .foot, .card-b .foot { width: 100%; max-width: none; font-size: 11px; line-height: 1.5; color: var(--muted); opacity: .75; margin: 14px 0 0; }
@@ -375,6 +377,7 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
           <div class="in">
             <label for="subs">What could it earn? <span class="val"><span id="subsVal">200</span> subscribers at $7.99 a month</span></label>
             <input id="subs" type="range" min="10" max="5000" step="10" value="200">
+            <em class="more" id="more" hidden>And there's no limit. It grows with your audience.</em>
           </div>
           <div class="res"><b id="outYou">$951</b><span>yours each month<sup>*</sup></span></div>
         </div>
@@ -459,8 +462,10 @@ var SHOWCASE_URL = "";
   function update() {
     var s = +subs.value, gross = s * PRICE, net = gross * 0.85;
     var rc = gross > 2500 ? gross * 0.01 : 0, you = net * 0.7 - rc;
-    document.getElementById("subsVal").textContent = s.toLocaleString("en-US");
-    document.getElementById("outYou").textContent = "$" + Math.round(you).toLocaleString("en-US");
+    var atMax = s >= +subs.max;
+    document.getElementById("subsVal").textContent = s.toLocaleString("en-US") + (atMax ? "+" : "");
+    document.getElementById("outYou").textContent = "$" + Math.round(you).toLocaleString("en-US") + (atMax ? "+" : "");
+    document.getElementById("more").hidden = !atMax;
   }
   subs.addEventListener("input", update);
   update();
