@@ -206,6 +206,10 @@ section.alt .calc .out div { background: var(--bg); }
 .calc .out .you b { color: var(--accent); }
 .calc .out span { font-size: 12px; color: var(--muted); }
 .calc .fine { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
+.foot, .card-b .foot { font-size: 12px; line-height: 1.5; color: var(--muted); margin: 14px 0 0; }
+.foot.star { margin-top: 20px; max-width: 60em; }
+sup { font-size: .6em; line-height: 0; vertical-align: .6em; margin-left: 1px; }
+.perk .big sup { -webkit-text-fill-color: var(--accent); }
 @media (max-width: 640px) { .calc .out { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* ---------- FAQ ---------- */
@@ -312,7 +316,7 @@ footer b { color: var(--text); }
       <p class="sub">A product that fits your audience, without the work of building one.</p>
       <div class="perks">
         <div class="perk"><div class="big">Yours</div><b>It's your app</b><p>Your Apple account, your listing, your subscribers.</p></div>
-        <div class="perk"><div class="big">70%</div><b>Income that keeps coming</b><p>Of net sales, paid by Apple every month.</p></div>
+        <div class="perk"><div class="big">~70%<sup>*</sup></div><b>Income that keeps coming</b><p>You keep roughly 70% of net sales, paid by Apple every month.</p></div>
         <div class="perk"><div class="big">0</div><b>Technical work for you</b><p>We build, publish, run subscriptions and update.</p></div>
         <div class="perk"><div class="big">Ad-free</div><b>Good for your audience</b><p>Calm, kind and genuinely helpful.</p></div>
       </div>
@@ -347,21 +351,18 @@ footer b { color: var(--text); }
             <li>Your fully branded app on the App Store</li>
             <li>App Store listing and screenshots</li>
             <li>Subscriptions and paywall set up</li>
-            <li>One round of changes before launch</li>
-            <li>You keep 70% of net sales</li>
+            <li>You keep roughly 70% of net sales<sup>*</sup></li>
           </ul>
         </div>
         <div class="card-b">
           <h3 style="margin-top:0">After launch</h3>
           <table class="table">
-            <tr><td>Your share of net sales</td><td>70%</td></tr>
-            <tr><td>Our share of net sales</td><td>30%</td></tr>
-            <tr><td>Updates for new iOS versions and fixes, while our share averages $250+ a month</td><td>Free</td></tr>
-            <tr><td>Updates below that</td><td>$999 each, optional</td></tr>
-            <tr><td>RevenueCat (runs the subscriptions): free up to $2,500 a month in sales, then 1%</td><td>Paid by you</td></tr>
-            <tr><td>Extra work: new affirmation packs, themes, features</td><td>$60 / hour</td></tr>
+            <tr><td>You keep</td><td>~70% of net sales<sup>*</sup></td></tr>
+            <tr><td>We keep</td><td>~30% of net sales</td></tr>
+            <tr><td>Updates and fixes</td><td>Free<sup>**</sup></td></tr>
+            <tr><td>Extra work, like new content or features</td><td>$60 / hour</td></tr>
           </table>
-          <p class="note" style="margin:12px 0 0;color:var(--muted);font-size:13px">Net sales are what Apple pays out after its fee and any taxes it withholds. Apple's $99 a year developer fee and RevenueCat's fee are paid by you, directly to them.</p>
+          <p class="foot"><sup>**</sup> Free while our share averages $250 or more a month. Below that, an update is $999, and only if you want it.</p>
         </div>
       </div>
 
@@ -380,11 +381,12 @@ footer b { color: var(--text); }
             <div><b id="outGross">$998</b><span>Paid by subscribers</span></div>
             <div><b id="outNet">$848</b><span>Paid out by Apple</span></div>
             <div><b id="outRc">$0</b><span>RevenueCat fee</span></div>
-            <div class="you"><b id="outYou">$594</b><span>Yours each month</span></div>
+            <div class="you"><b id="outYou">$594</b><span>Yours each month<sup>*</sup></span></div>
           </div>
-          <p class="fine">An example to show how the numbers work, not a promise. It assumes Apple's 15% Small Business fee and RevenueCat's 1% once sales pass $2,500 a month, before your own taxes and any VAT Apple withholds.</p>
+          <p class="fine">An example to show how the numbers work, not a promise.</p>
         </div>
       </div>
+      <p class="foot star"><sup>*</sup> Roughly, because the exact amount depends on a few things outside our control. We count on Apple's App Store Small Business Program, which lowers Apple's fee from 30% to 15% for developers earning under $1 million a year. Net sales are what Apple pays out after its fee and any taxes it withholds, such as VAT. RevenueCat, which runs the subscriptions, is free up to $2,500 a month in sales and then takes 1%. That fee and Apple's $99 a year developer account are paid by you, directly to them.</p>
     </div>
   </section>
 
