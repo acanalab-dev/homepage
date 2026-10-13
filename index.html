@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Own Affirmations App</title>
+<meta name="description" content="A daily affirmations iPhone app with your name, your colors and your words. We build it, publish it under your account and keep it running. You share it and earn from subscriptions.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23667eea'/%3E%3Cstop offset='1' stop-color='%23764ba2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath fill='white' d='M12 18.5s-6-3.6-6-8a3.3 3.3 0 0 1 6-1.9 3.3 3.3 0 0 1 6 1.9c0 4.4-6 8-6 8z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6f6f8;
+  --panel: #ffffff;
+  --text: #1c1c1e;
+  --muted: #6b6b73;
+  --line: #e3e3e8;
+  --soft: #eef0fb;
+  --brand-a: #667eea;
+  --brand-b: #764ba2;
+  --accent: #5a5fd4;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111113;
+    --panel: #1c1c1f;
+    --text: #f2f2f5;
+    --muted: #9c9ca5;
+    --line: #2e2e33;
+    --soft: #1f2033;
+    --accent: #8f94ff;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111113;
+  --panel: #1c1c1f;
+  --text: #f2f2f5;
+  --muted: #9c9ca5;
+  --line: #2e2e33;
+  --soft: #1f2033;
+  --accent: #8f94ff;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+.rounded { font-family: ui-rounded, "SF Pro Rounded", -apple-system, system-ui, sans-serif; }
+
+/* ---------- Top bar ---------- */
+.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 20px; height: 56px; }
+.logo { font-weight: 700; letter-spacing: -.01em; color: var(--text); text-decoration: none; }
+.top nav { display: flex; gap: 18px; margin-left: auto; font-size: 14px; }
+.top nav a { color: var(--muted); text-decoration: none; }
+.top nav a:hover { color: var(--text); }
+@media (max-width: 720px) { .top nav { display: none; } }
+
+/* ---------- Buttons ---------- */
+.btn { font-family: inherit; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: 16px; text-decoration: none; border: 0; cursor: pointer; }
+.btn.primary { color: #fff; background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); box-shadow: 0 8px 24px -10px var(--brand-b); }
+.btn.ghost { color: var(--text); background: var(--panel); border: 1px solid var(--line); }
+.btn.small { padding: 8px 16px; font-size: 14px; margin-left: 4px; }
+@media (max-width: 720px) { .btn.small { margin-left: auto; } }
+
+/* ---------- Hero ---------- */
+.hero { padding: 64px 0 56px; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 48px; align-items: center; }
+.eyebrow { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+h1 { font-size: clamp(36px, 6vw, 56px); line-height: 1.05; letter-spacing: -.03em; margin: 0 0 18px; }
+h1 .grad { background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lead { font-size: 19px; color: var(--muted); margin: 0 0 28px; max-width: 34em; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 28px; font-size: 14px; color: var(--muted); }
+.facts span::before { content: "✓"; color: var(--accent); font-weight: 700; margin-right: 6px; }
+@media (max-width: 820px) {
+  .hero { padding: 40px 0 32px; }
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+}
+
+/* ---------- Phone mock ---------- */
+.phone { width: 280px; max-width: 100%; aspect-ratio: 9 / 19.5; margin: 0 auto; border-radius: 46px; padding: 10px; background: #1b1b1d; box-shadow: 0 40px 80px -30px rgba(40, 30, 90, .45), inset 0 0 0 2px #3a3a3e; position: relative; }
+.screen { height: 100%; border-radius: 37px; overflow: hidden; background: #f2f2f7; color: #1c1c1e; position: relative; display: flex; flex-direction: column; padding: 46px 16px 14px; }
+.screen::before { content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 84px; height: 24px; border-radius: 14px; background: #000; }
+.screen .bar { display: flex; align-items: center; justify-content: space-between; }
+.screen .date { font-size: 12px; color: #6b6b73; font-weight: 500; }
+.screen .today { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
+.screen .pill { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; background: #fff; border-radius: 999px; padding: 4px 9px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.screen .card { flex: 1; margin: 14px 0 12px; border-radius: 24px; padding: 20px; color: #fff; display: flex; flex-direction: column; background: linear-gradient(160deg, #e2667a, #f2929e); box-shadow: 0 16px 30px -18px #c94b5e; position: relative; }
+.screen .card::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: -8px; height: 20px; border-radius: 0 0 20px 20px; background: rgba(226, 102, 122, .35); z-index: -1; }
+.screen .card .cat { font-size: 11px; font-weight: 600; opacity: .9; letter-spacing: .04em; text-transform: uppercase; }
+.screen .card .txt { margin: auto 0; font-size: 22px; line-height: 1.25; font-weight: 600; }
+.screen .card .acts { display: flex; justify-content: space-between; font-size: 18px; opacity: .9; }
+.screen .tabs { align-self: center; display: flex; gap: 22px; padding: 9px 20px; border-radius: 999px; background: rgba(255,255,255,.85); box-shadow: 0 4px 14px rgba(0,0,0,.08); font-size: 10px; color: #8e8e93; }
+.screen .tabs b { color: #c94b5e; font-weight: 600; }
+.hero-art { position: relative; }
+.icon-float { position: absolute; left: -6px; bottom: 54px; width: 92px; height: 92px; border-radius: 22px; background: #3a3a3a; color: #fff; display: grid; place-items: center; text-align: center; font: 700 34px/0.6 "Qwitcher Grypen", cursive; box-shadow: 0 18px 40px -16px rgba(0,0,0,.5); transform: rotate(-6deg); padding-top: 4px; }
+.icon-float span { display: block; }
+.icon-float span + span { margin-left: 12px; }
+@media (max-width: 420px) { .icon-float { left: 0; } }
+
+/* ---------- Sections ---------- */
+section { padding: 64px 0; }
+section.alt { background: var(--panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+h2 { font-size: clamp(28px, 4vw, 38px); line-height: 1.1; letter-spacing: -.02em; margin: 0 0 12px; }
+.sub { color: var(--muted); font-size: 18px; margin: 0 0 36px; max-width: 40em; }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 860px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .grid, .grid.two { grid-template-columns: minmax(0, 1fr); } }
+.card-b { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
+section.alt .card-b { background: var(--bg); }
+.card-b h3 { font-size: 17px; margin: 12px 0 6px; letter-spacing: -.01em; }
+.card-b p { margin: 0; color: var(--muted); font-size: 15px; }
+.ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--soft); color: var(--accent); }
+.ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- Steps ---------- */
+.steps { counter-reset: s; display: grid; gap: 14px; }
+.step { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; align-items: start; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 20px; }
+.step::before { counter-increment: s; content: counter(s); width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); }
+.step h3 { margin: 2px 0 4px; font-size: 17px; }
+.step p { margin: 0; color: var(--muted); font-size: 15px; }
+.who { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--soft); color: var(--accent); margin-left: 6px; vertical-align: 2px; }
+
+/* ---------- Pricing ---------- */
+.plans { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 720px) { .plans { grid-template-columns: minmax(0, 1fr); } }
+.plan { border: 1px solid var(--line); border-radius: 24px; padding: 26px; background: var(--bg); position: relative; }
+.plan.featured { border: 2px solid transparent; background: linear-gradient(var(--bg), var(--bg)) padding-box, linear-gradient(135deg, var(--brand-a), var(--brand-b)) border-box; }
+.badge { position: absolute; top: -12px; right: 20px; font-size: 12px; font-weight: 700; color: #fff; padding: 4px 10px; border-radius: 999px; background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); }
+.plan h3 { margin: 0 0 4px; font-size: 20px; }
+.price { font-size: 40px; font-weight: 700; letter-spacing: -.03em; margin: 8px 0 2px; }
+.price small { font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+.plan .note { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+.plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 15px; }
+.plan li { padding-left: 24px; position: relative; }
+.plan li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin-top: 16px; }
+@media (max-width: 720px) { .split { grid-template-columns: minmax(0, 1fr); } }
+.table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.table td { padding: 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.table tr:last-child td { border-bottom: 0; }
+.table td:last-child { text-align: right; font-weight: 600; padding-left: 12px; }
+
+/* ---------- Calculator ---------- */
+.calc label { display: block; font-size: 14px; font-weight: 600; margin: 0 0 6px; }
+.calc .row { margin-bottom: 18px; }
+.calc .val { float: right; font-weight: 700; color: var(--accent); }
+.calc input[type="range"] { width: 100%; accent-color: var(--brand-a); }
+.calc .out { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 4px; }
+.calc .out div { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+section.alt .calc .out div { background: var(--bg); }
+.calc .out b { display: block; font-size: 22px; letter-spacing: -.02em; }
+.calc .out .you b { color: var(--accent); }
+.calc .out span { font-size: 12px; color: var(--muted); }
+.calc .fine { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
+@media (max-width: 420px) { .calc .out { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- FAQ ---------- */
+details { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 0 20px; margin-bottom: 10px; }
+summary { cursor: pointer; font-weight: 600; padding: 16px 0; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--muted); font-weight: 400; font-size: 22px; line-height: 1; }
+details[open] summary::after { content: "–"; }
+details p { margin: 0 0 16px; color: var(--muted); }
+
+/* ---------- Closing ---------- */
+.closing { text-align: center; }
+.closing .box { border-radius: 28px; padding: 48px 24px; color: #fff; background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); }
+.closing h2 { color: #fff; }
+.closing p { margin: 0 auto 26px; max-width: 32em; opacity: .9; font-size: 18px; }
+.closing .btn.light { background: #fff; color: #4b3a8f; }
+.closing .btn.outline { color: #fff; border: 1px solid rgba(255,255,255,.6); background: transparent; }
+.closing .cta { justify-content: center; }
+footer { padding: 32px 0 48px; text-align: center; font-size: 13px; color: var(--muted); }
+footer b { color: var(--text); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#">acanalab</a>
+    <nav>
+      <a href="#app">The app</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn primary small" href="https://acanalab-dev.github.io/brand-picker/">Design yours</a>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">For creators and influencers</span>
+        <h1>Your own <span class="grad">affirmations app</span>, with your name on it.</h1>
+        <p class="lead">Give your followers a daily dose of encouragement from you, right on their iPhone. We build the app, publish it on the App Store under your name and keep it running. You share it and earn from every subscription.</p>
+        <div class="cta">
+          <a class="btn primary" href="https://acanalab-dev.github.io/brand-picker/">Design your app in 5 minutes</a>
+          <a class="btn ghost" href="#how">See how it works</a>
+        </div>
+        <div class="facts">
+          <span>No coding</span>
+          <span>Your brand, your account</span>
+          <span>Monthly income</span>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="phone" aria-hidden="true">
+          <div class="screen">
+            <div class="bar">
+              <div>
+                <div class="date">Tuesday, 13 October</div>
+                <div class="today">Today</div>
+              </div>
+              <span class="pill">🔥 12</span>
+            </div>
+            <div class="card">
+              <div class="cat">From Jane</div>
+              <div class="txt rounded">I am allowed to take up space and shine.</div>
+              <div class="acts"><span>♡</span><span>↗</span></div>
+            </div>
+            <div class="tabs"><b>Today</b><span>Favorites</span><span>Premium</span></div>
+          </div>
+        </div>
+        <div class="icon-float" aria-hidden="true"><div><span>From</span><span>Jane</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- What your followers get -->
+  <section class="alt" id="app">
+    <div class="wrap">
+      <h2>An app your followers will open every day</h2>
+      <p class="sub">A finished, polished iPhone app that already works. We dress it in your brand and fill it with your voice.</p>
+      <div class="grid">
+        <div class="card-b">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
+          <h3>Fresh affirmations daily</h3>
+          <p>Hundreds of ready-made affirmations across 19 topics, from self love and confidence to calm and gratitude.</p>
+        </div>
+        <div class="card-b">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3>Your own words</h3>
+          <p>Add your own affirmations in a category with your name, and greet every new user with a personal welcome note.</p>
+        </div>
+        <div class="card-b">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-3.5 2-5 1 1 1.5 2 1.5 3 1-2 1.5-5 1.5-8z"/></svg></div>
+          <h3>Streaks that build a habit</h3>
+          <p>A daily streak, weekly progress and milestones keep people coming back to your app, and to you.</p>
+        </div>
+        <div class="card-b">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+          <h3>Gentle daily reminders</h3>
+          <p>A reminder at the time each user picks, so your words show up in their day without them having to remember.</p>
+        </div>
+        <div class="card-b">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></div>
+          <h3>Home and Lock Screen widgets</h3>
+          <p>Your affirmation right on their Home Screen and Lock Screen, in your colors, all day long.</p>
+        </div>
+        <div class="card-b">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+          <h3>Favorites and sharing</h3>
+          <p>Followers save the ones that speak to them and share them as beautiful cards with friends.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why it's a good deal for the creator -->
+  <section>
+    <div class="wrap">
+      <h2>Why creators like it</h2>
+      <p class="sub">A product that fits your audience, without the work of building one.</p>
+      <div class="grid two">
+        <div class="card-b">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg></div>
+          <h3>It's yours</h3>
+          <p>Your app name, your icon, your colors and your voice. It's published under your own Apple developer account, so the App Store listing and the subscribers are yours.</p>
+        </div>
+        <div class="card-b">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></div>
+          <h3>Income that keeps coming</h3>
+          <p>The app is free to download. Premium unlocks every topic, unlimited favorites and widgets as a monthly, yearly or lifetime purchase. You keep 70% of what Apple pays out.</p>
+        </div>
+        <div class="card-b">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-2.5z"/></svg></div>
+          <h3>We do the technical part</h3>
+          <p>Building, App Store listing and screenshots, subscriptions, Apple review, privacy policy, and updates for new iPhones and iOS versions.</p>
+        </div>
+        <div class="card-b">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3>Good for your audience</h3>
+          <p>A calm, ad-free app that helps people feel better every day. Something you can recommend with a clear conscience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="alt" id="how">
+    <div class="wrap">
+      <h2>How it works</h2>
+      <p class="sub">Four steps from idea to the App Store. Most of the waiting is on Apple's review.</p>
+      <div class="steps">
+        <div class="step"><div>
+          <h3>Design your app <span class="who">You, 5 minutes</span></h3>
+          <p>Open the <a href="https://acanalab-dev.github.io/brand-picker/">brand picker</a>, choose your app name, icon, colors and welcome note, and watch them appear on real app screens. Download your picks and send them to us.</p>
+        </div></div>
+        <div class="step"><div>
+          <h3>Set up your Apple account <span class="who">You</span></h3>
+          <p>Join the Apple Developer Program ($99 a year, paid to Apple) and the App Store Small Business Program, which cuts Apple's fee from 30% to 15%. Then add us to your team so we can publish for you.</p>
+        </div></div>
+        <div class="step"><div>
+          <h3>We build and publish <span class="who">Us</span></h3>
+          <p>We apply your brand, load your affirmations, set up subscriptions, prepare the App Store listing for your approval, and submit the app to Apple. You get one round of changes before it goes out.</p>
+        </div></div>
+        <div class="step"><div>
+          <h3>Launch and earn <span class="who">Together</span></h3>
+          <p>Share the app with your followers. Apple pays you every month, and we keep the app up to date while you focus on your content.</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="wrap">
+      <h2>Simple, fair pricing</h2>
+      <p class="sub">We only do well when your app does well, so most of what we earn comes from a share of sales.</p>
+      <div class="plans">
+        <div class="plan">
+          <h3>Standard</h3>
+          <div class="price">$999 <small>one-time setup</small></div>
+          <p class="note">Half when we start, half before we submit to Apple.</p>
+          <ul>
+            <li>Your fully branded app on the App Store</li>
+            <li>App Store listing and screenshots</li>
+            <li>Subscriptions and paywall set up</li>
+            <li>One round of changes before launch</li>
+            <li>You keep 70% of net sales</li>
+          </ul>
+        </div>
+        <div class="plan featured">
+          <span class="badge">Setup free</span>
+          <h3>Launch partner</h3>
+          <div class="price">$0 <small>setup</small></div>
+          <p class="note">The setup fee is waived when you help us launch.</p>
+          <ul>
+            <li>Everything in Standard</li>
+            <li>At least 3 stories and 1 feed post in the first 30 days</li>
+            <li>We can share your app as a case study</li>
+            <li>The app stays live for at least 12 months</li>
+            <li>You keep 70% of net sales</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="card-b">
+          <h3 style="margin-top:0">After launch</h3>
+          <table class="table">
+            <tr><td>Your share of net sales</td><td>70%</td></tr>
+            <tr><td>Our share of net sales</td><td>30%</td></tr>
+            <tr><td>Updates for new iOS versions and fixes, while our share averages $250+ a month</td><td>Free</td></tr>
+            <tr><td>Updates below that</td><td>$999 each, optional</td></tr>
+            <tr><td>Extra work: new affirmation packs, themes, features</td><td>$60 / hour</td></tr>
+          </table>
+          <p class="note" style="margin:12px 0 0;color:var(--muted);font-size:13px">Net sales are what Apple pays out after its fee and any taxes it withholds. Apple's own $99 a year developer fee is paid by you, directly to Apple.</p>
+        </div>
+
+        <div class="card-b calc" id="calc">
+          <h3 style="margin-top:0">What could it earn?</h3>
+          <div class="row">
+            <label for="subs">Paying subscribers <span class="val" id="subsVal">200</span></label>
+            <input id="subs" type="range" min="10" max="2000" step="10" value="200">
+          </div>
+          <div class="row">
+            <label for="price">Price per month <span class="val" id="priceVal">$4.99</span></label>
+            <input id="price" type="range" min="1.99" max="9.99" step="1" value="4.99">
+          </div>
+          <div class="out">
+            <div><b id="outGross">$998</b><span>Paid by subscribers</span></div>
+            <div><b id="outNet">$848</b><span>Paid out by Apple</span></div>
+            <div class="you"><b id="outYou">$594</b><span>Yours each month</span></div>
+          </div>
+          <p class="fine">An example to show how the numbers work, not a promise. It assumes Apple's 15% Small Business fee, before your own taxes and any VAT Apple withholds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="alt" id="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+      <p class="sub">If yours isn't here, just ask.</p>
+      <details>
+        <summary>Do I need to know anything technical?</summary>
+        <p>No. You pick your look in the brand picker, send us your affirmations and approve the App Store listing. We handle everything else.</p>
+      </details>
+      <details>
+        <summary>Why does the app go on my own Apple developer account?</summary>
+        <p>Apple requires apps built on a shared platform to be published by the owner of the content. It also means the App Store listing, the reviews and the money from Apple go straight to you.</p>
+      </details>
+      <details>
+        <summary>Do I have to write all the affirmations myself?</summary>
+        <p>No. The app comes with hundreds of affirmations across 19 topics. You can add your own on top, and they appear in their own category with your name.</p>
+      </details>
+      <details>
+        <summary>How long until my app is live?</summary>
+        <p>It depends mostly on how quickly we get your picks, content and Apple account access, and on Apple's review, which we don't control. We agree on a target launch date when we start.</p>
+      </details>
+      <details>
+        <summary>Can you guarantee downloads or income?</summary>
+        <p>No one honestly can. How the app does depends on your audience and how you share it. What we can promise is a polished app, a smooth launch and an app that keeps working.</p>
+      </details>
+      <details>
+        <summary>What if I want to stop?</summary>
+        <p>You can remove the app from sale at any time, or buy out our share with 60 days' notice for the greater of $10,000 or 24 times our average monthly share, and keep the app as it is.</p>
+      </details>
+      <details>
+        <summary>Is there an Android version?</summary>
+        <p>Not at the moment. The app is made for iPhone.</p>
+      </details>
+      <details>
+        <summary>What about my followers' privacy?</summary>
+        <p>The app shows no ads and doesn't track people. We prepare a privacy policy and terms of use in your name and host them for you.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <section class="closing">
+    <div class="wrap">
+      <div class="box">
+        <h2>See your app before you decide</h2>
+        <p>It takes a few minutes in the brand picker, and you'll see your name, icon and colors on real app screens right away.</p>
+        <div class="cta">
+          <a class="btn light" href="https://acanalab-dev.github.io/brand-picker/">Design your app</a>
+          <button type="button" class="btn outline" id="contactBtn">Get in touch</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Made by <b>acanalab</b></footer>
+
+<script>
+(function () {
+  // Earnings example: Apple keeps 15% (Small Business Program), creator keeps 70% of the rest.
+  var subs = document.getElementById("subs");
+  var price = document.getElementById("price");
+  var money = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
+  function update() {
+    var s = +subs.value, p = +price.value;
+    var gross = s * p, net = gross * 0.85, you = net * 0.7;
+    document.getElementById("subsVal").textContent = s.toLocaleString("en-US");
+    document.getElementById("priceVal").textContent = "$" + p.toFixed(2);
+    document.getElementById("outGross").textContent = money(gross);
+    document.getElementById("outNet").textContent = money(net);
+    document.getElementById("outYou").textContent = money(you);
+  }
+  subs.addEventListener("input", update);
+  price.addEventListener("input", update);
+  update();
+})();
+</script>
+</body>
+</html>
