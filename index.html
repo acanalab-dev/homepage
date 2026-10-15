@@ -91,7 +91,7 @@ h1 { font-size: clamp(36px, 6vw, 56px); line-height: 1.05; letter-spacing: -.03e
 h1 .grad { background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .lead { font-size: 19px; color: var(--muted); margin: 0 0 28px; max-width: 34em; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; }
-.own { font-size: 17px; line-height: 1.45; margin: 0 0 14px; padding: 2px 0 2px 14px; border-left: 3px solid; border-image: linear-gradient(180deg, var(--brand-a), var(--brand-b)) 1; color: var(--text); max-width: 32em; }
+.own { font-size: 17px; line-height: 1.45; margin: 28px 0 0; padding: 2px 0 2px 14px; border-left: 3px solid; border-image: linear-gradient(180deg, var(--brand-a), var(--brand-b)) 1; color: var(--text); max-width: 32em; }
 .own b { background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 @media (max-width: 820px) {
   .hero { padding: 40px 0 32px; }
@@ -157,16 +157,12 @@ section.alt .card-b { background: var(--bg); }
 .kind { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: center; }
 .kind .feats { grid-template-columns: minmax(0, 1fr); gap: 16px; }
 .live { display: block; border-radius: 26px; overflow: hidden; color: #fff; text-decoration: none; background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); box-shadow: 0 24px 50px -28px var(--brand-b); }
-.live .phones { position: relative; height: 250px; overflow: hidden; }
-.live .phones img { position: absolute; left: 50%; height: auto; filter: drop-shadow(0 18px 24px rgba(20, 10, 60, .45)); }
-.live .phones .back { width: 150px; top: 46px; transform: translateX(-92%) rotate(-6deg); }
-.live .phones .front { width: 168px; top: 24px; transform: translateX(-18%); }
-.live .info { display: flex; align-items: center; gap: 14px; padding: 18px 20px 6px; background: rgba(255, 255, 255, .1); border-top: 1px solid rgba(255, 255, 255, .18); }
+.live .info { display: flex; align-items: center; gap: 14px; padding: 22px 22px 4px; }
 .live .info img { width: 52px; height: 52px; border-radius: 12px; display: block; flex-shrink: 0; }
 .live .info b { display: block; font-size: 18px; }
 .live .info small { display: block; font-size: 14px; opacity: .85; }
-.live p { margin: 0; padding: 10px 20px 0; font-size: 15px; line-height: 1.5; opacity: .92; background: rgba(255, 255, 255, .1); }
-.live .go { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px 18px; font-weight: 600; background: rgba(255, 255, 255, .1); }
+.live p { margin: 0; padding: 12px 22px 0; font-size: 15px; line-height: 1.5; opacity: .92; }
+.live .go { display: flex; align-items: center; justify-content: space-between; margin: 16px 22px 22px; padding: 12px 16px; border-radius: 14px; font-weight: 600; background: rgba(255, 255, 255, .16); }
 .live .go svg { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .live:hover .go svg { transform: translateX(3px); }
 @media (max-width: 820px) { .kind { grid-template-columns: minmax(0, 1fr); gap: 32px; } }
@@ -283,12 +279,12 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
       <div>
         <span class="eyebrow">For creators and influencers</span>
         <h1>Your own <span class="grad">affirmations app</span></h1>
-        <p class="own">Sponsorships end when the campaign does. <b>An app you own keeps earning.</b></p>
         <p class="lead">Daily encouragement from you, right on your followers’ iPhones. We build and run the app. You share it and earn from every subscription.</p>
         <div class="cta">
           <a class="btn primary" href="design/">Design your app in 5 minutes</a>
           <a class="btn ghost" href="#how">See how it works</a>
         </div>
+        <p class="own">Don’t just promote other people’s products. <b>Own one that keeps earning for you.</b></p>
      </div>
       <div class="hero-art">
         <div class="phone" aria-hidden="true">
@@ -332,10 +328,6 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
           <li><span class="ico"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></span><span><b>Favorites and sharing</b>save the best ones and share them as cards</span></li>
         </ul>
         <a class="live" id="showcaseLink" href="dailyaffirmationsapp/">
-          <div class="phones" aria-hidden="true">
-            <img class="back" src="dailyaffirmationsapp/img/phone-swipe.webp" alt="" width="560" height="1150">
-            <img class="front" src="dailyaffirmationsapp/img/phone-today.webp" alt="" width="560" height="1150">
-          </div>
           <div class="info"><img src="app-icon.png" alt="" width="52" height="52"><span><b>Daily Affirmations</b><small>Our own app on the App Store</small></span></div>
           <p>Your app works just like this one, with your name, icon and colors. Try it to see exactly what your followers get.</p>
           <div class="go"><span>See a live example</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
