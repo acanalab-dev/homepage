@@ -1110,13 +1110,17 @@ details.dev pre { background: var(--field); border: 1px solid var(--line); borde
     toast("Saved. Now email the file to " + SEND_TO + ".");
   });
 
-  // Opens an email with the app name as the subject. Email links can't attach files,
+  // Opens an email with "New app: <name>" as the subject. Email links can't attach files,
   // so the person attaches the downloaded file themselves.
   $("emailPicks").addEventListener("click", function () {
     if (!picksReady()) return;
     var name = state.appName.trim();
-    var body = "Hi,\n\nHere are my picks for my app \u201c" + name + "\u201d. The file is attached.\n";
-    location.href = "mailto:" + SEND_TO + "?subject=" + encodeURIComponent(name) + "&body=" + encodeURIComponent(body);
+    var file = slug() + "-brand-picks.json";
+    var body = "Here are my picks for my app \u201c" + name + "\u201d.\n\n" +
+      "Before you send: please attach the file " + file + ". It's usually in your Downloads folder. " +
+      "If you haven't downloaded it yet, go back and tap \u201cDownload my picks\u201d first.\n\n" +
+      "Anything else you'd like us to know? (optional)\n\n";
+    location.href = "mailto:" + SEND_TO + "?subject=" + encodeURIComponent("New app: " + name) + "&body=" + encodeURIComponent(body);
   });
 
   $("importFile").addEventListener("change", function () {
