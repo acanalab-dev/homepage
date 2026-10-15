@@ -477,9 +477,8 @@ details.dev pre { background: var(--field); border: 1px solid var(--line); borde
     <section class="group">
       <h2><span class="num">5</span>Send your picks</h2>
       <button type="button" class="btn primary" id="downloadJson">Download my picks</button>
-      <button type="button" class="btn" id="emailPicks" style="margin-top:10px;width:100%;padding:12px 16px;font-size:15px;font-weight:600">Email my picks</button>
       <div class="missing" id="missingBox" role="alert" hidden></div>
-      <p class="hint">Download your picks, then tap “Email my picks” and attach the file. Or send it to us at <a href="mailto:support@acanalab.com?subject=New%20app">support@acanalab.com</a>.</p>
+      <p class="hint">Download your picks, then send it to us at <a id="emailPicks" href="mailto:support@acanalab.com?subject=New%20app">support@acanalab.com</a>.</p>
       <div class="btn-row">
         <button type="button" class="btn" id="resetAll">Start over</button>
       </div>
@@ -1112,7 +1111,8 @@ details.dev pre { background: var(--field); border: 1px solid var(--line); borde
 
   // Opens an email with "New app: <name>" as the subject. Email links can't attach files,
   // so the person attaches the downloaded file themselves.
-  $("emailPicks").addEventListener("click", function () {
+  $("emailPicks").addEventListener("click", function (e) {
+    e.preventDefault();
     if (!picksReady()) return;
     var name = state.appName.trim();
     var file = slug() + "-brand-picks.json";
