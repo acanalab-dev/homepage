@@ -998,7 +998,6 @@ details.dev pre { background: var(--field); border: 1px solid var(--line); borde
       "    // Used only when BrandAffirmations.swift has entries." + (state.ownAffirmations ? "" : " (Creator picked: library only.)"),
       "    struct Creator {",
       "        static let categoryName: String = " + swiftString(state.categoryName || "From the Creator"),
-      '        static let categoryIcon: String = "' + CREATOR_ICON + '" // SF Symbol name',
       "        static let gradientHex: [String] = " + light,
       "        static let gradientDarkHex: [String] = " + hexList(cardDark()),
       "    }",
@@ -1020,7 +1019,7 @@ details.dev pre { background: var(--field); border: 1px solid var(--line); borde
       welcome: { eyebrow: state.eyebrow, greeting: state.greeting, message: state.message, signature: state.signature },
       creator: {
         ownAffirmations: state.ownAffirmations,
-        categoryName: state.categoryName, categoryIcon: CREATOR_ICON, sampleAffirmation: state.sample,
+        categoryName: state.categoryName, sampleAffirmation: state.sample,
         cardColorsMatchBrand: state.sameAsBrand, cardLight: cardLight(),
         cardDark: cardDark()
       }
