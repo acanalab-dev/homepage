@@ -327,7 +327,7 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
           <li><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></span><span><b>Widgets</b>on the Home Screen and Lock Screen</span></li>
           <li><span class="ico"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></span><span><b>Favorites and sharing</b>save the best ones and share them as cards</span></li>
         </ul>
-        <a class="live" id="showcaseLink" href="dailyaffirmationsapp/">
+        <a class="live" id="showcaseLink" href="dailyaffirmationsapp/" target="_blank" rel="noopener">
           <div class="info"><img src="app-icon.png" alt="" width="52" height="52"><span><b>Daily Affirmations</b><small>Our own app on the App Store</small></span></div>
           <p>Your app works just like this one, with your name, icon and colors. Try it to see exactly what your followers get.</p>
           <div class="go"><span>See a live example</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
@@ -396,11 +396,11 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
       <div class="split one">
         <div class="card-b calc" id="calc">
           <div class="in">
-            <label for="subs">What could it earn? <span class="val"><span id="subsVal">200</span> subscribers at $7.99 a month</span></label>
-            <input id="subs" type="range" min="10" max="5000" step="10" value="200">
+            <label for="subs">What could it earn? <span class="val"><span id="subsVal">500</span> subscribers at $7.99 a month</span></label>
+            <input id="subs" type="range" min="10" max="5000" step="10" value="500">
             <em class="more" id="more" hidden>And there's no limit. It grows with your audience.</em>
           </div>
-          <div class="res"><b id="outYou">$951</b><span>yours each month<sup>*</sup></span></div>
+          <div class="res"><b id="outYou">$2,337</b><span>yours each month<sup>*</sup></span></div>
         </div>
       </div>
       <p class="foot star"><sup>*</sup> Roughly, because the exact amount depends on a few things outside our control. We count on Apple's App Store Small Business Program, which lowers Apple's fee from 30% to 15% for developers earning under $1 million a year. Net sales are what Apple pays out after its fee and any taxes it withholds, such as VAT. RevenueCat, which runs the subscriptions, is free up to $2,500 a month in sales and then takes 1%. That fee and Apple's $99 a year developer account are paid by you, directly to them.</p>
@@ -471,7 +471,7 @@ var SHOWCASE_URL = "";
 
 (function () {
   var link = document.getElementById("showcaseLink");
-  if (SHOWCASE_URL) { link.href = SHOWCASE_URL; link.target = "_blank"; link.rel = "noopener"; }
+  if (SHOWCASE_URL) link.href = SHOWCASE_URL;
 
   var d = new Date();
   document.getElementById("mockDate").textContent = d.toLocaleDateString("en-GB", { weekday: "long" }) + ", " + d.toLocaleDateString("en-GB", { day: "numeric", month: "long" });
