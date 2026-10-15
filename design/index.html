@@ -132,6 +132,9 @@ textarea { resize: vertical; min-height: 110px; }
 .btn.primary { background: linear-gradient(90deg, var(--p), var(--s)); color: #fff; border: 0; font-weight: 600; padding: 12px 16px; width: 100%; font-size: 15px; }
 .btn.link { border: 0; background: none; color: var(--muted); padding: 4px 0; text-decoration: underline; font-size: 13px; }
 .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.reset { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); text-align: center; }
+.reset button { font: inherit; font-size: 13px; font-weight: 600; color: #e5484d; background: none; border: 0; padding: 6px 10px; border-radius: 8px; cursor: pointer; }
+.reset button:hover { background: color-mix(in srgb, #e5484d 10%, transparent); }
 .file-input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 
 .choice { display: grid; gap: 8px; margin-bottom: 14px; }
@@ -479,8 +482,8 @@ details.dev pre { background: var(--field); border: 1px solid var(--line); borde
       <button type="button" class="btn primary" id="downloadJson">Download my picks</button>
       <div class="missing" id="missingBox" role="alert" hidden></div>
       <p class="hint">Download your picks, then send it to us at <a id="emailPicks" href="mailto:support@acanalab.com?subject=New%20app">support@acanalab.com</a>.</p>
-      <div class="btn-row">
-        <button type="button" class="btn" id="resetAll">Start over</button>
+      <div class="reset">
+        <button type="button" id="resetAll">Clear all and start over</button>
       </div>
       <details class="dev" id="devBox" hidden>
         <summary>For the developer: BrandConfig code</summary>
@@ -1135,7 +1138,7 @@ details.dev pre { background: var(--field); border: 1px solid var(--line); borde
   });
 
   $("resetAll").addEventListener("click", function () {
-    if (!confirm("Start over? This clears your picks on this page.")) return;
+    if (!confirm("Clear all and start over? This removes everything you picked on this page.")) return;
     state = clone(DEFAULTS); changed();
   });
 
