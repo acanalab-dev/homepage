@@ -102,12 +102,11 @@ h2 { font-size: clamp(28px, 4.5vw, 38px); line-height: 1.12; letter-spacing: -.0
 @media (max-width: 620px) { .plans { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- Privacy + support ---------- */
-.duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.box { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 26px; }
-.box h3 { margin: 0 0 8px; font-size: 20px; }
-.box p { margin: 0 0 10px; color: var(--muted); }
-.box p:last-child { margin-bottom: 0; }
-@media (max-width: 720px) { .duo { grid-template-columns: minmax(0, 1fr); } }
+section.slim { padding: 48px 0; }
+.contact { text-align: center; }
+.contact h3 { margin: 0 0 6px; font-size: 22px; }
+.contact p { margin: 0; color: var(--muted); }
+.contact .trust { margin-top: 14px; font-size: 14px; }
 
 footer { padding: 32px 16px 48px; text-align: center; font-size: 13px; color: var(--muted); }
 footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
@@ -171,8 +170,8 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
 
   <section>
     <div class="wrap">
-      <h2>Free, with an optional Premium</h2>
-      <p class="sub">The app is free to use every day. Premium unlocks everything.</p>
+      <h2>Start free. Go Premium when you’re ready.</h2>
+      <p class="sub">Your daily affirmations, streaks and reminders are free, with no time limit. Premium adds widgets, every category and unlimited favorites.</p>
       <div class="plans">
         <div class="plan">
           <h3>Free</h3>
@@ -199,18 +198,12 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
     </div>
   </section>
 
-  <section class="alt">
+  <section class="alt slim">
     <div class="wrap">
-      <div class="duo">
-        <div class="box" id="privacy">
-          <h3>Private by design</h3>
-          <p>No account, no ads and no tracking. Your favorites and streaks stay on your iPhone and in your own iCloud, where only you can see them.</p>
-        </div>
-        <div class="box" id="support">
-          <h3>Support</h3>
-          <p>Have a question, an idea or a problem? Write to us and we're happy to help.</p>
-          <p><a href="mailto:support@acanalab.com">support@acanalab.com</a></p>
-        </div>
+      <div class="contact" id="support">
+        <h3>Questions or ideas?</h3>
+        <p>Write to us at <a href="mailto:support@acanalab.com">support@acanalab.com</a>. We're happy to help.</p>
+        <p class="trust">No account, no ads, no tracking.</p>
       </div>
     </div>
   </section>
