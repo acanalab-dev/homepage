@@ -261,7 +261,7 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
 
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="#"><img src="creator-icon.png" alt="" width="30" height="30"><span>Affirmations for Creators</span></a>
+    <a class="logo" href="#"><img src="creator-icon.png" alt="" width="30" height="30"><span>Own Your App</span></a>
     <nav>
       <a href="#app">The app</a>
       <a href="#how">How it works</a>
@@ -466,13 +466,7 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
 <footer><div><b>© 2026 acanalab</b><a href="terms-of-use">Terms of Use</a><a href="privacy-policy">Privacy Policy</a></div><div class="love">Made with <span aria-label="love">♥</span> in Europe</div></footer>
 
 <script>
-// App Store link of the showcase app. While empty, the card opens the app's own page instead.
-var SHOWCASE_URL = "";
-
 (function () {
-  var link = document.getElementById("showcaseLink");
-  if (SHOWCASE_URL) link.href = SHOWCASE_URL;
-
   var d = new Date();
   document.getElementById("mockDate").textContent = d.toLocaleDateString("en-GB", { weekday: "long" }) + ", " + d.toLocaleDateString("en-GB", { day: "numeric", month: "long" });
 
