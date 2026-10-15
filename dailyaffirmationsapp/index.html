@@ -103,13 +103,17 @@ h2 { font-size: clamp(28px, 4.5vw, 38px); line-height: 1.12; letter-spacing: -.0
 
 /* ---------- Privacy + support ---------- */
 section.slim { padding: 48px 0; }
-.contact { text-align: center; }
-.contact h3 { margin: 0 0 6px; font-size: 22px; }
-.contact p { margin: 0; color: var(--muted); }
-.contact .trust { margin-top: 14px; font-size: 14px; }
+.duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.box { background: var(--bg); border: 1px solid var(--line); border-radius: 22px; padding: 26px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.box h3 { margin: 0 0 6px; font-size: 20px; }
+.box p { margin: 0; color: var(--muted); text-wrap: pretty; }
+.box .trust { margin-top: 14px; font-size: 14px; }
+.box.get img { width: 56px; height: 56px; border-radius: 13px; margin-bottom: 12px; }
+.box.get .store { margin-top: 16px; }
+@media (max-width: 720px) { .duo { grid-template-columns: minmax(0, 1fr); } }
 
 footer { padding: 32px 16px 48px; text-align: center; font-size: 13px; color: var(--muted); }
-footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
+footer a { color: var(--muted); text-decoration: none; margin: 0 8px; white-space: nowrap; display: inline-block; }
 footer b { color: var(--text); margin-right: 8px; }
 footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
 </style>
@@ -122,7 +126,7 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
     <img class="icon" src="../app-icon.png" alt="Daily Affirmations app icon" width="96" height="96">
     <h1>Daily Affirmations</h1>
     <p class="lead">Start your day with a kind word. Fresh affirmations every day, right on your iPhone.</p>
-    <a class="store soon" id="storeLink" href="#" target="_blank" rel="noopener" aria-label="Download on the App Store">
+    <a class="store soon" href="#" target="_blank" rel="noopener" aria-label="Download on the App Store">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.02-1.5-2.62-1.7-3.19-1.72-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.75 2.2 1.1-.04 1.52-.71 2.85-.71s1.71.71 2.88.69c1.19-.02 1.94-1.08 2.67-2.14.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.32-.89-2.33-3.55zM14.17 6.13c.61-.74 1.02-1.76.91-2.78-.88.04-1.94.59-2.57 1.32-.56.65-1.06 1.69-.93 2.69.98.08 1.98-.5 2.59-1.23z"/></svg>
       <span><small>Download on the</small><b>App Store</b></span>
     </a>
@@ -200,10 +204,21 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
 
   <section class="alt slim">
     <div class="wrap">
-      <div class="contact" id="support">
-        <h3>Questions or ideas?</h3>
-        <p>Write to us at <a href="mailto:support@acanalab.com">support@acanalab.com</a>. We're happy to help.</p>
-        <p class="trust">No sign-up, no ads, no tracking.</p>
+      <div class="duo">
+        <div class="box get">
+          <img src="../app-icon.png" alt="" width="56" height="56">
+          <h3>Get Daily Affirmations</h3>
+          <p>Free to download. For iPhone.</p>
+          <a class="store soon" href="#" target="_blank" rel="noopener" aria-label="Download on the App Store">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.02-1.5-2.62-1.7-3.19-1.72-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.75 2.2 1.1-.04 1.52-.71 2.85-.71s1.71.71 2.88.69c1.19-.02 1.94-1.08 2.67-2.14.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.32-.89-2.33-3.55zM14.17 6.13c.61-.74 1.02-1.76.91-2.78-.88.04-1.94.59-2.57 1.32-.56.65-1.06 1.69-.93 2.69.98.08 1.98-.5 2.59-1.23z"/></svg>
+      <span><small>Download on the</small><b>App Store</b></span>
+    </a>
+        </div>
+        <div class="box" id="support">
+          <h3>Questions or ideas?</h3>
+          <p>Write to us at <a href="mailto:support@acanalab.com">support@acanalab.com</a>. We're happy to help.</p>
+          <p class="trust">No sign-up, no ads, no tracking.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -215,9 +230,10 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
 // App Store link of Daily Affirmations. Leave empty until it's live (the button then does nothing on tap).
 var APP_STORE_URL = "";
 (function () {
-  var link = document.getElementById("storeLink");
-  if (APP_STORE_URL) { link.href = APP_STORE_URL; link.classList.remove("soon"); }
-  else link.addEventListener("click", function (e) { e.preventDefault(); });
+  document.querySelectorAll("a.store").forEach(function (link) {
+    if (APP_STORE_URL) { link.href = APP_STORE_URL; link.classList.remove("soon"); }
+    else link.addEventListener("click", function (e) { e.preventDefault(); });
+  });
 })();
 </script>
 </body>
