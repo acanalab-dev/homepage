@@ -195,7 +195,7 @@ section.alt .card-b { background: var(--bg); }
 }
 
 /* ---------- Pricing ---------- */
-.phases { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.phases { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .ph { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; }
 .ph.hl { border-color: transparent; background: linear-gradient(var(--panel), var(--panel)) padding-box, linear-gradient(135deg, var(--brand-a), var(--brand-b)) border-box; border: 2px solid transparent; padding: 21px; }
 .ph .tag { align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: var(--accent); background: var(--soft); padding: 3px 10px; border-radius: 999px; }
@@ -222,10 +222,10 @@ section.alt .card-b { background: var(--bg); }
 .calc input[type="range"] { width: 100%; accent-color: var(--brand-a); margin: 0; }
 .calc .more { display: block; margin-top: 8px; font-style: normal; font-size: 13px; font-weight: 600; color: var(--accent); }
 .calc .more[hidden] { display: none; }
-.calc .res { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 18px; }
+.calc .res { display: grid; gap: 12px; margin-top: 18px; }
 .calc .res div { background: var(--soft); border-radius: 14px; padding: 12px 14px; }
 .calc .res span { display: block; font-size: 13px; color: var(--muted); }
-.calc .res b { display: block; font-size: 28px; letter-spacing: -.03em; line-height: 1.15; color: var(--accent); }
+.calc .res b { display: block; font-size: 36px; letter-spacing: -.03em; line-height: 1.15; color: var(--accent); }
 .calc .res .hl b { background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .calc .fine { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
 .foot, .card-b .foot { width: 100%; max-width: none; font-size: 11px; line-height: 1.5; color: color-mix(in srgb, var(--muted) 60%, var(--bg)); margin: 14px 0 0; }
@@ -345,7 +345,7 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
       <p class="sub">A product that fits your audience, without the work of building one.</p>
       <div class="perks">
         <div class="perk"><div class="big">Yours</div><b>It's your app</b><p>Your Apple account, your listing, your subscribers.</p></div>
-        <div class="perk"><div class="big">~70%<sup>*</sup></div><b>Income that keeps coming</b><p>You keep about 50% until your app makes $10,000, then about 70%. <a href="#pricing">See pricing</a></p></div>
+        <div class="perk"><div class="big">~70%<sup>*</sup></div><b>Income that keeps coming</b><p>You keep roughly 70% of net sales, paid by Apple every month.</p></div>
         <div class="perk"><div class="big">0</div><b>Technical work for you</b><p>No coding or tech skills needed. We build, publish, run subscriptions and update.</p></div>
         <div class="perk"><div class="big">Ad-free</div><b>Good for your audience</b><p>Calm, kind and genuinely helpful.</p></div>
       </div>
@@ -379,19 +379,12 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
           <div class="bar-l"><span>No setup fee</span></div>
           <p>We build your app, publish it on the App Store and set up subscriptions.</p>
         </li>
-        <li class="ph">
-          <span class="tag">Your first $10,000</span>
-          <div class="big">~50%<small>yours<sup>*</sup></small></div>
-          <div class="bar"><i style="width:50%"></i></div>
-          <div class="bar-l"><span>You ~50%</span><span>Us 50%</span></div>
-          <p>We split net sales evenly while your app gets going.</p>
-        </li>
         <li class="ph hl">
-          <span class="tag">After that, for good</span>
+          <span class="tag">Every month</span>
           <div class="big">~70%<small>yours<sup>*</sup></small></div>
           <div class="bar"><i style="width:70%"></i></div>
           <div class="bar-l"><span>You ~70%</span><span>Us 30%</span></div>
-          <p>Our share drops to 30% for as long as your app runs.</p>
+          <p>Apple pays you directly. We share what your app earns, for as long as it runs.</p>
         </li>
       </ol>
 
@@ -413,13 +406,11 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
           <input id="subs" type="range" min="10" max="5000" step="10" value="500">
           <em class="more" id="more" hidden>And there's no limit. It grows with your audience.</em>
           <div class="res">
-            <div><span id="lblFirst">First 3 months</span><b id="outFirst">$1,658</b><span>a month at ~50%<sup>*</sup></span></div>
-            <div class="hl"><span>After that</span><b id="outYou">$2,337</b><span>a month at ~70%<sup>*</sup></span></div>
+            <div class="hl"><b id="outYou">$2,337</b><span>yours each month<sup>*</sup></span></div>
           </div>
-          <p class="fine" id="calcNote">Your share jumps to ~70% after the first 3 months, once your app has made $10,000.</p>
         </div>
       </div>
-      <p class="foot star"><sup>*</sup> Roughly, because the exact amount depends on a few things outside our control. We count on Apple's App Store Small Business Program, which lowers Apple's fee from 30% to 15% for developers earning under $1 million a year. Net sales are what Apple pays out after its fee and any taxes it withholds, such as VAT. RevenueCat, which runs the subscriptions, is free up to $2,500 a month in sales and then takes 1%. That fee and Apple's $99 a year developer account are paid by you, directly to them.</p>
+      <p class="foot star"><sup>*</sup> For your app’s first $10,000 in net sales, we split them 50/50. After that, you keep roughly 70%. Roughly, because the exact amount depends on a few things outside our control. We count on Apple's App Store Small Business Program, which lowers Apple's fee from 30% to 15% for developers earning under $1 million a year. Net sales are what Apple pays out after its fee and any taxes it withholds, such as VAT. RevenueCat, which runs the subscriptions, is free up to $2,500 a month in sales and then takes 1%. That fee and Apple's $99 a year developer account are paid by you, directly to them.</p>
     </div>
   </section>
 
@@ -434,7 +425,7 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
       </details>
       <details>
         <summary>Why does the app go on my own Apple developer account?</summary>
-        <p>Because then it's truly yours. The app appears on the App Store under your name and your brand, and the listing, the reviews and the subscribers are all yours. Apple pays the money straight to you every month. Then, within 15 days, you send us 50% of net sales, or 30% once your app has made $10,000.</p>
+        <p>Because then it's truly yours. The app appears on the App Store under your name and your brand, and the listing, the reviews and the subscribers are all yours. Apple pays the money straight to you every month. Then, within 15 days, you send us 30% of net sales, or 50% until your app has made its first $10,000.</p>
       </details>
       <details>
         <summary>Do I have to write all the affirmations myself?</summary>
@@ -488,21 +479,17 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
 
   // Earnings example at $7.99 a month: Apple keeps 15% (Small Business Program),
   // RevenueCat takes 1% once sales pass $2,500 a month, creator keeps 70% of Apple's payout
-  // (50% until the first $10,000 of net sales).
+  // (50% until the first $10,000 of net sales, explained in the footnote).
   var subs = document.getElementById("subs");
   var PRICE = 7.99;
   function update() {
     var s = +subs.value, gross = s * PRICE, net = gross * 0.85;
     var rc = gross > 2500 ? gross * 0.01 : 0;
-    var first = net * 0.5 - rc, you = net * 0.7 - rc;
-    var months = Math.ceil(10000 / net), atMax = s >= +subs.max, plus = atMax ? "+" : "";
+    var you = net * 0.7 - rc;
+    var atMax = s >= +subs.max, plus = atMax ? "+" : "";
     var fmt = function (n) { return "$" + Math.round(n).toLocaleString("en-US") + plus; };
     document.getElementById("subsVal").textContent = s.toLocaleString("en-US") + plus;
-    document.getElementById("outFirst").textContent = fmt(first);
     document.getElementById("outYou").textContent = fmt(you);
-    var span = months <= 1 ? "first month" : months <= 24 ? "first " + months + " months" : "first ~" + (Math.round(months / 6) / 2) + " years";
-    document.getElementById("lblFirst").textContent = span.charAt(0).toUpperCase() + span.slice(1);
-    document.getElementById("calcNote").textContent = "Your share jumps to ~70% after the " + span + ", once your app has made $10,000.";
     document.getElementById("more").hidden = !atMax;
   }
   subs.addEventListener("input", update);
