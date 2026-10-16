@@ -413,10 +413,10 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
           <input id="subs" type="range" min="10" max="5000" step="10" value="500">
           <em class="more" id="more" hidden>And there's no limit. It grows with your audience.</em>
           <div class="res">
-            <div><span>First $10,000</span><b id="outFirst">$1,658</b><span>yours a month<sup>*</sup></span></div>
-            <div class="hl"><span>After that</span><b id="outYou">$2,337</b><span>yours a month<sup>*</sup></span></div>
+            <div><span id="lblFirst">First 3 months</span><b id="outFirst">$1,658</b><span>a month at ~50%<sup>*</sup></span></div>
+            <div class="hl"><span>After that</span><b id="outYou">$2,337</b><span>a month at ~70%<sup>*</sup></span></div>
           </div>
-          <p class="fine" id="calcNote">At this size, your app makes its first $10,000 in about 3 months.</p>
+          <p class="fine" id="calcNote">Your share jumps to ~70% after the first 3 months, once your app has made $10,000.</p>
         </div>
       </div>
       <p class="foot star"><sup>*</sup> Roughly, because the exact amount depends on a few things outside our control. We count on Apple's App Store Small Business Program, which lowers Apple's fee from 30% to 15% for developers earning under $1 million a year. Net sales are what Apple pays out after its fee and any taxes it withholds, such as VAT. RevenueCat, which runs the subscriptions, is free up to $2,500 a month in sales and then takes 1%. That fee and Apple's $99 a year developer account are paid by you, directly to them.</p>
@@ -500,7 +500,9 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
     document.getElementById("subsVal").textContent = s.toLocaleString("en-US") + plus;
     document.getElementById("outFirst").textContent = fmt(first);
     document.getElementById("outYou").textContent = fmt(you);
-    document.getElementById("calcNote").textContent = "At this size, your app makes its first $10,000 in about " + (months <= 1 ? "a month" : months <= 24 ? months + " months" : Math.round(months / 12) + " years") + ".";
+    var span = months <= 1 ? "first month" : months <= 24 ? "first " + months + " months" : "first ~" + (Math.round(months / 6) / 2) + " years";
+    document.getElementById("lblFirst").textContent = span.charAt(0).toUpperCase() + span.slice(1);
+    document.getElementById("calcNote").textContent = "Your share jumps to ~70% after the " + span + ", once your app has made $10,000.";
     document.getElementById("more").hidden = !atMax;
   }
   subs.addEventListener("input", update);
