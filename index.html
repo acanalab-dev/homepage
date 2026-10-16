@@ -225,7 +225,7 @@ section.alt .card-b { background: var(--bg); }
 .calc .more { display: block; margin-top: 10px; font-style: normal; font-size: 13px; font-weight: 600; color: var(--accent); }
 .calc .more[hidden] { display: none; }
 @media (max-width: 560px) { .calc { grid-template-columns: minmax(0, 1fr); } .calc .res { text-align: left; } }
-.calc .fine { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
+.calc .fine { grid-column: 1 / -1; font-size: 13px; color: var(--muted); margin: 0; }
 .foot, .card-b .foot { width: 100%; max-width: none; font-size: 11px; line-height: 1.5; color: color-mix(in srgb, var(--muted) 60%, var(--bg)); margin: 14px 0 0; }
 .foot.star { margin-top: 20px; }
 sup { font-size: .75em; font-weight: 700; line-height: 0; vertical-align: .55em; margin-left: 1px; color: var(--accent); }
@@ -368,24 +368,24 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
   <section id="pricing">
     <div class="wrap">
       <h2>Simple, fair pricing</h2>
-      <p class="sub">One setup fee, paid only once your app is live. After that, we simply share what it earns. We only grow when you do.</p>
+      <p class="sub">Nothing to pay upfront. We simply share what your app earns, and our share drops once it takes off. We only grow when you do.</p>
       <div class="plans">
         <div class="plan">
           <h3>Standard</h3>
-          <div class="price">$999 <small>one-time setup</small></div>
-          <p class="note">Paid only once your app is live on the App Store.</p>
+          <div class="price">$0 <small>upfront</small></div>
+          <p class="note">No setup fee. We only earn when your app does.</p>
           <ul>
             <li>Your fully branded app on the App Store</li>
             <li>App Store listing and screenshots</li>
             <li>Subscriptions and paywall set up</li>
-            <li>You keep roughly 70% of net sales<sup>*</sup></li>
+            <li>You keep 50% of net sales, then roughly 70%<sup>*</sup></li>
           </ul>
         </div>
         <div class="card-b">
           <h3 style="margin-top:0">After launch</h3>
           <table class="table">
-            <tr><td>You keep</td><td>~70% of net sales<sup>*</sup></td></tr>
-            <tr><td>We keep</td><td>~30% of net sales</td></tr>
+            <tr><td>You keep, first $10,000 in sales</td><td>50%</td></tr>
+            <tr><td>You keep after that</td><td>~70%<sup>*</sup></td></tr>
             <tr><td>Updates, fixes and new features</td><td>Free<sup>**</sup></td></tr>
             <tr><td>Custom work just for your app</td><td>Quoted per request</td></tr>
           </table>
@@ -401,6 +401,7 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
             <em class="more" id="more" hidden>And there's no limit. It grows with your audience.</em>
           </div>
           <div class="res"><b id="outYou">$2,337</b><span>yours each month<sup>*</sup></span></div>
+          <p class="fine" id="calcNote">After your first $10,000 in net sales, which takes about 3 months at this size. Until then you keep 50%.</p>
         </div>
       </div>
       <p class="foot star"><sup>*</sup> Roughly, because the exact amount depends on a few things outside our control. We count on Apple's App Store Small Business Program, which lowers Apple's fee from 30% to 15% for developers earning under $1 million a year. Net sales are what Apple pays out after its fee and any taxes it withholds, such as VAT. RevenueCat, which runs the subscriptions, is free up to $2,500 a month in sales and then takes 1%. That fee and Apple's $99 a year developer account are paid by you, directly to them.</p>
@@ -418,7 +419,7 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
       </details>
       <details>
         <summary>Why does the app go on my own Apple developer account?</summary>
-        <p>Because then it's truly yours. The app appears on the App Store under your name and your brand, and the listing, the reviews and the subscribers are all yours. Apple pays the money straight to you every month. Then, within 15 days, you send us 30% of net sales.</p>
+        <p>Because then it's truly yours. The app appears on the App Store under your name and your brand, and the listing, the reviews and the subscribers are all yours. Apple pays the money straight to you every month. Then, within 15 days, you send us 50% of net sales, or 30% once your app has made $10,000.</p>
       </details>
       <details>
         <summary>Do I have to write all the affirmations myself?</summary>
@@ -430,7 +431,7 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
       </details>
       <details>
         <summary>Why not hire an agency or a developer?</summary>
-        <p>Building a custom app with an agency or freelancer means a big upfront investment, a long wait, and paying again every time something needs updating. Here you get a finished, tested app for a one-time setup fee, it's live much sooner, and updates are free while your app does well. We only earn when you earn, so we want your app to succeed as much as you do.</p>
+        <p>Building a custom app with an agency or freelancer means a big upfront investment, a long wait, and paying again every time something needs updating. Here you get a finished, tested app with nothing to pay upfront, it's live much sooner, and updates are free while your app does well. We only earn when you earn, so we want your app to succeed as much as you do.</p>
       </details>
       <details>
         <summary>Can you guarantee downloads or income?</summary>
@@ -471,13 +472,15 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
   document.getElementById("mockDate").textContent = d.toLocaleDateString("en-GB", { weekday: "long" }) + ", " + d.toLocaleDateString("en-GB", { day: "numeric", month: "long" });
 
   // Earnings example at $7.99 a month: Apple keeps 15% (Small Business Program),
-  // RevenueCat takes 1% once sales pass $2,500 a month, creator keeps 70% of Apple's payout.
+  // RevenueCat takes 1% once sales pass $2,500 a month, creator keeps 70% of Apple's payout
+  // (50% until the first $10,000 of net sales).
   var subs = document.getElementById("subs");
   var PRICE = 7.99;
   function update() {
     var s = +subs.value, gross = s * PRICE, net = gross * 0.85;
     var rc = gross > 2500 ? gross * 0.01 : 0, you = net * 0.7 - rc;
-    var atMax = s >= +subs.max;
+    var months = Math.ceil(10000 / net), atMax = s >= +subs.max;
+    document.getElementById("calcNote").textContent = "After your first $10,000 in net sales, which takes about " + (months <= 1 ? "a month" : months <= 24 ? months + " months" : Math.round(months / 12) + " years") + " at this size. Until then you keep 50%.";
     document.getElementById("subsVal").textContent = s.toLocaleString("en-US") + (atMax ? "+" : "");
     document.getElementById("outYou").textContent = "$" + Math.round(you).toLocaleString("en-US") + (atMax ? "+" : "");
     document.getElementById("more").hidden = !atMax;
