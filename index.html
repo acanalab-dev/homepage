@@ -195,37 +195,39 @@ section.alt .card-b { background: var(--bg); }
 }
 
 /* ---------- Pricing ---------- */
-.plans { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-@media (max-width: 720px) { .plans { grid-template-columns: minmax(0, 1fr); } }
-.plan { border: 1px solid var(--line); border-radius: 20px; padding: 22px; background: var(--panel); position: relative; }
-.plan h3 { margin: 0 0 4px; font-size: 20px; }
-.price { font-size: 40px; font-weight: 700; letter-spacing: -.03em; margin: 8px 0 2px; }
-.price small { font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
-.plan .note { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
-.plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 15px; }
-.plan li { padding-left: 24px; position: relative; }
-.plan li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.phases { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ph { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; }
+.ph.hl { border-color: transparent; background: linear-gradient(var(--panel), var(--panel)) padding-box, linear-gradient(135deg, var(--brand-a), var(--brand-b)) border-box; border: 2px solid transparent; padding: 21px; }
+.ph .tag { align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: var(--accent); background: var(--soft); padding: 3px 10px; border-radius: 999px; }
+.ph .big { font-size: 44px; font-weight: 800; letter-spacing: -.04em; line-height: 1; margin: 18px 0 2px; }
+.ph .big small { font-size: 15px; font-weight: 600; letter-spacing: 0; color: var(--muted); margin-left: 6px; }
+.ph p { margin: 12px 0 0; color: var(--muted); font-size: 15px; line-height: 1.45; }
+.bar { display: flex; height: 10px; border-radius: 999px; overflow: hidden; background: var(--line); margin-top: 16px; }
+.bar i { display: block; background: linear-gradient(90deg, var(--brand-a), var(--brand-b)); }
+.bar.empty { background: repeating-linear-gradient(135deg, var(--line) 0 6px, transparent 6px 12px); }
+.bar-l { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 6px; }
+@media (max-width: 760px) { .phases { grid-template-columns: minmax(0, 1fr); } }
+
 .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin-top: 16px; }
-@media (max-width: 720px) { .split { grid-template-columns: minmax(0, 1fr); } }
-.split.one { grid-template-columns: minmax(0, 1fr); }
-.table { width: 100%; border-collapse: collapse; font-size: 15px; }
-.table td { padding: 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
-.table tr:last-child td { border-bottom: 0; }
-.table td:last-child { text-align: right; font-weight: 600; padding-left: 12px; }
+@media (max-width: 760px) { .split { grid-template-columns: minmax(0, 1fr); } }
+.incl h3, .calc h3 { margin: 0 0 14px; font-size: 17px; }
+.incl ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 15px; }
+.incl li { padding-left: 26px; position: relative; }
+.incl li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.incl li em { font-style: normal; color: var(--muted); }
 
 /* ---------- Calculator ---------- */
-.calc { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px 32px; align-items: center; }
-.calc label { display: block; font-size: 16px; font-weight: 700; margin: 0 0 10px; }
-.calc .val { display: block; font-size: 14px; font-weight: 500; color: var(--muted); margin-top: 2px; }
+.calc .val { display: block; font-size: 14px; font-weight: 500; color: var(--muted); margin: -8px 0 12px; }
 .calc .val span { color: var(--accent); font-weight: 700; }
 .calc input[type="range"] { width: 100%; accent-color: var(--brand-a); margin: 0; }
-.calc .res { text-align: right; }
-.calc .res b { display: block; font-size: 36px; letter-spacing: -.03em; line-height: 1.1; color: var(--accent); }
-.calc .res span { font-size: 13px; color: var(--muted); }
-.calc .more { display: block; margin-top: 10px; font-style: normal; font-size: 13px; font-weight: 600; color: var(--accent); }
+.calc .more { display: block; margin-top: 8px; font-style: normal; font-size: 13px; font-weight: 600; color: var(--accent); }
 .calc .more[hidden] { display: none; }
-@media (max-width: 560px) { .calc { grid-template-columns: minmax(0, 1fr); } .calc .res { text-align: left; } }
-.calc .fine { grid-column: 1 / -1; font-size: 13px; color: var(--muted); margin: 0; }
+.calc .res { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 18px; }
+.calc .res div { background: var(--soft); border-radius: 14px; padding: 12px 14px; }
+.calc .res span { display: block; font-size: 13px; color: var(--muted); }
+.calc .res b { display: block; font-size: 28px; letter-spacing: -.03em; line-height: 1.15; color: var(--accent); }
+.calc .res .hl b { background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.calc .fine { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
 .foot, .card-b .foot { width: 100%; max-width: none; font-size: 11px; line-height: 1.5; color: color-mix(in srgb, var(--muted) 60%, var(--bg)); margin: 14px 0 0; }
 .foot.star { margin-top: 20px; }
 sup { font-size: .75em; font-weight: 700; line-height: 0; vertical-align: .55em; margin-left: 1px; color: var(--accent); }
@@ -367,41 +369,54 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
   <!-- Pricing -->
   <section id="pricing">
     <div class="wrap">
-      <h2>Simple, fair pricing</h2>
-      <p class="sub">Nothing to pay upfront. We simply share what your app earns, and our share drops once it takes off. We only grow when you do.</p>
-      <div class="plans">
-        <div class="plan">
-          <h3>Standard</h3>
-          <div class="price">$0 <small>upfront</small></div>
-          <p class="note">No setup fee. We only earn when your app does.</p>
+      <h2>Nothing to pay until you earn</h2>
+      <p class="sub">No setup fee. We build and run your app, then share what it earns. Once it takes off, our share drops.</p>
+      <ol class="phases">
+        <li class="ph">
+          <span class="tag">To get started</span>
+          <div class="big">$0<small>upfront</small></div>
+          <div class="bar empty"></div>
+          <div class="bar-l"><span>No setup fee</span></div>
+          <p>We build your app, publish it on the App Store and set up subscriptions.</p>
+        </li>
+        <li class="ph">
+          <span class="tag">Your first $10,000</span>
+          <div class="big">50%<small>yours</small></div>
+          <div class="bar"><i style="width:50%"></i></div>
+          <div class="bar-l"><span>You 50%</span><span>Us 50%</span></div>
+          <p>We split net sales evenly while your app gets going.</p>
+        </li>
+        <li class="ph hl">
+          <span class="tag">After that, for good</span>
+          <div class="big">~70%<small>yours<sup>*</sup></small></div>
+          <div class="bar"><i style="width:70%"></i></div>
+          <div class="bar-l"><span>You ~70%</span><span>Us 30%</span></div>
+          <p>Our share drops to 30% for as long as your app runs.</p>
+        </li>
+      </ol>
+
+      <div class="split">
+        <div class="card-b incl">
+          <h3>Always included</h3>
           <ul>
             <li>Your fully branded app on the App Store</li>
             <li>App Store listing and screenshots</li>
             <li>Subscriptions and paywall set up</li>
-            <li>You keep 50% of net sales, then roughly 70%<sup>*</sup></li>
+            <li>Updates, fixes and new features <em>free<sup>**</sup></em></li>
+            <li>Custom work just for your app <em>quoted per request</em></li>
           </ul>
-        </div>
-        <div class="card-b">
-          <h3 style="margin-top:0">After launch</h3>
-          <table class="table">
-            <tr><td>You keep, first $10,000 in sales</td><td>50%</td></tr>
-            <tr><td>You keep after that</td><td>~70%<sup>*</sup></td></tr>
-            <tr><td>Updates, fixes and new features</td><td>Free<sup>**</sup></td></tr>
-            <tr><td>Custom work just for your app</td><td>Quoted per request</td></tr>
-          </table>
           <p class="foot"><sup>**</sup> Free while our share averages $250 or more a month. Below that, an update is $999, and only if you want it.</p>
         </div>
-      </div>
-
-      <div class="split one">
         <div class="card-b calc" id="calc">
-          <div class="in">
-            <label for="subs">What could it earn? <span class="val"><span id="subsVal">500</span> subscribers at $7.99 a month</span></label>
-            <input id="subs" type="range" min="10" max="5000" step="10" value="500">
-            <em class="more" id="more" hidden>And there's no limit. It grows with your audience.</em>
+          <h3><label for="subs">What could it earn?</label></h3>
+          <span class="val"><span id="subsVal">500</span> subscribers at $7.99 a month</span>
+          <input id="subs" type="range" min="10" max="5000" step="10" value="500">
+          <em class="more" id="more" hidden>And there's no limit. It grows with your audience.</em>
+          <div class="res">
+            <div><span>First $10,000</span><b id="outFirst">$1,658</b><span>yours a month<sup>*</sup></span></div>
+            <div class="hl"><span>After that</span><b id="outYou">$2,337</b><span>yours a month<sup>*</sup></span></div>
           </div>
-          <div class="res"><b id="outYou">$2,337</b><span>yours each month<sup>*</sup></span></div>
-          <p class="fine" id="calcNote">After your first $10,000 in net sales, which takes about 3 months at this size. Until then you keep 50%.</p>
+          <p class="fine" id="calcNote">At this size, your app makes its first $10,000 in about 3 months.</p>
         </div>
       </div>
       <p class="foot star"><sup>*</sup> Roughly, because the exact amount depends on a few things outside our control. We count on Apple's App Store Small Business Program, which lowers Apple's fee from 30% to 15% for developers earning under $1 million a year. Net sales are what Apple pays out after its fee and any taxes it withholds, such as VAT. RevenueCat, which runs the subscriptions, is free up to $2,500 a month in sales and then takes 1%. That fee and Apple's $99 a year developer account are paid by you, directly to them.</p>
@@ -478,11 +493,14 @@ footer .love { margin-top: 8px; } footer .love span { color: #e2667a; }
   var PRICE = 7.99;
   function update() {
     var s = +subs.value, gross = s * PRICE, net = gross * 0.85;
-    var rc = gross > 2500 ? gross * 0.01 : 0, you = net * 0.7 - rc;
-    var months = Math.ceil(10000 / net), atMax = s >= +subs.max;
-    document.getElementById("calcNote").textContent = "After your first $10,000 in net sales, which takes about " + (months <= 1 ? "a month" : months <= 24 ? months + " months" : Math.round(months / 12) + " years") + " at this size. Until then you keep 50%.";
-    document.getElementById("subsVal").textContent = s.toLocaleString("en-US") + (atMax ? "+" : "");
-    document.getElementById("outYou").textContent = "$" + Math.round(you).toLocaleString("en-US") + (atMax ? "+" : "");
+    var rc = gross > 2500 ? gross * 0.01 : 0;
+    var first = net * 0.5 - rc, you = net * 0.7 - rc;
+    var months = Math.ceil(10000 / net), atMax = s >= +subs.max, plus = atMax ? "+" : "";
+    var fmt = function (n) { return "$" + Math.round(n).toLocaleString("en-US") + plus; };
+    document.getElementById("subsVal").textContent = s.toLocaleString("en-US") + plus;
+    document.getElementById("outFirst").textContent = fmt(first);
+    document.getElementById("outYou").textContent = fmt(you);
+    document.getElementById("calcNote").textContent = "At this size, your app makes its first $10,000 in about " + (months <= 1 ? "a month" : months <= 24 ? months + " months" : Math.round(months / 12) + " years") + ".";
     document.getElementById("more").hidden = !atMax;
   }
   subs.addEventListener("input", update);
